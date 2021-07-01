@@ -16,6 +16,26 @@ class DOMNodeCollection {
   empty() {
     this.html("");
   }
+
+  append(target) {
+    if(typeof target == 'string') {
+      this.elements.forEach(element => {
+        element.innerHTML += target;
+      })
+    } else if (target instanceof DOMNodeCollection) {
+      target.elements.forEach(element => {
+        let outer = element.outerHTML;
+        this.elements.forEach(element => {
+          element.innerHTML += outer;
+        })
+      })
+    } else {
+      let outer = target.outerHTML;
+      this.elements.forEach(element => {
+        element.innerHTML += outer;
+      })
+    }
+  }
 }
 
 module.exports = DOMNodeCollection;
