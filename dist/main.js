@@ -15,7 +15,7 @@
   \**********************/
 /***/ (() => {
 
-eval("\n\n//# sourceURL=webpack:///./src/index.js?");
+eval("let $1 = (argument) => {\n  let nodelist = document.querySelectorAll(argument);\n  let nodeArray = Array.from(nodelist);\n  return nodeArray;\n}\n\nwindow.$1 = $1;\n\n//# sourceURL=webpack:///./src/index.js?");
 
 /***/ })
 
