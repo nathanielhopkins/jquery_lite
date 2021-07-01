@@ -4,13 +4,17 @@ class DOMNodeCollection {
   }
 
   html(string = null) {
-    if(string) {
+    if(string != null) {
       this.elements.forEach(element => {
         element.innerHTML = string;
       });
     } else {
       return this.elements[0].innerHTML;
     }
+  }
+
+  empty() {
+    this.html("");
   }
 }
 
