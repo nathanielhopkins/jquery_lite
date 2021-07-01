@@ -25,7 +25,7 @@ eval("class DOMNodeCollection {\n  constructor(array) {\n    this.elements = arr
   \**********************/
 /***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
 
-eval("let DOMNodeCollection = __webpack_require__(/*! ./dom_node_collection */ \"./src/dom_node_collection.js\");\n\nlet $1 = (argument) => {\n  let nodelist = document.querySelectorAll(argument);\n  let nodeArray = Array.from(nodelist);\n  return nodeArray;\n}\n\nwindow.$1 = $1;\n\n//# sourceURL=webpack:///./src/index.js?");
+eval("let DOMNodeCollection = __webpack_require__(/*! ./dom_node_collection */ \"./src/dom_node_collection.js\");\n\nlet $1 = (argument) => {\n  if(argument instanceof HTMLElement) {\n    let element = new DOMNodeCollection([argument]);\n    return element;\n  } else {\n    let nodelist = document.querySelectorAll(argument);\n    let nodeArray = Array.from(nodelist);\n    return new DOMNodeCollection(nodeArray);\n  }\n}\n\nwindow.$1 = $1;\n\n//# sourceURL=webpack:///./src/index.js?");
 
 /***/ })
 
