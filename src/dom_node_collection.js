@@ -36,6 +36,21 @@ class DOMNodeCollection {
       })
     }
   }
+
+  attr(name, value) {
+    if(name instanceof Object){
+      let valuePairs = Object.entries(name);
+      valuePairs.forEach(pair => {
+        this.attr(pair[0], pair[1]);
+      })
+    } else if (name && value) {
+      this.elements.forEach(element => {
+        element.setAttribute(name, value);
+      })
+    } else {
+      return this.elements[0].attributes[name].value;
+    }
+  }
 }
 
 module.exports = DOMNodeCollection;
