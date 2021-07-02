@@ -105,6 +105,17 @@ class DOMNodeCollection {
 
     return new DOMNodeCollection(parentArr);
   }
+
+  find(selector) {
+    let results = [];
+
+    this.elements.forEach(element => {
+      let eleResults = element.querySelectorAll(selector);
+      eleResults.forEach(result => results.push(result));
+    })
+
+    return new DOMNodeCollection(results);
+  }
 }
 
 module.exports = DOMNodeCollection;
