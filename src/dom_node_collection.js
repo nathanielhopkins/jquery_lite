@@ -51,6 +51,34 @@ class DOMNodeCollection {
       return this.elements[0].attributes[name].value;
     }
   }
+
+  addClass(classNames) {
+    if (classNames instanceof Array) {
+      classNames.forEach(name => {
+        this.elements.forEach(element => {
+          element.classList.add(name);
+        })
+      })
+    } else if (typeof classNames == 'string') {
+      this.elements.forEach(element => {
+        element.classList.add(classNames);
+      })
+    }
+  }
+
+  removeClass(classNames) {
+    if (classNames instanceof Array) {
+      classNames.forEach(name => {
+        this.elements.forEach(element => {
+          element.classList.remove(name);
+        })
+      })
+    } else if (typeof classNames == 'string') {
+      this.elements.forEach(element => {
+        element.classList.remove(classNames);
+      })
+    }
+  }
 }
 
 module.exports = DOMNodeCollection;
