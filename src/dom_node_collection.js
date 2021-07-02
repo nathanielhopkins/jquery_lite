@@ -92,6 +92,19 @@ class DOMNodeCollection {
 
     return new DOMNodeCollection(childArr);
   }
+
+  parent() {
+    let parentArr = [];
+
+    this.elements.forEach(element => {
+      let eleParent = element.parentElement;
+      if(parentArr.includes(eleParent) == false) {
+        parentArr.push(eleParent); 
+      }
+    })
+
+    return new DOMNodeCollection(parentArr);
+  }
 }
 
 module.exports = DOMNodeCollection;
