@@ -79,6 +79,19 @@ class DOMNodeCollection {
       })
     }
   }
+
+  children() {
+    let childArr = [];
+
+    this.elements.forEach(element => {
+      let eleChildren = Array.from(element.children);
+      eleChildren.forEach(child => {
+        childArr.push(child);
+      })
+    })
+
+    return new DOMNodeCollection(childArr);
+  }
 }
 
 module.exports = DOMNodeCollection;
