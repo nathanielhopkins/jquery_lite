@@ -127,6 +127,18 @@ class DOMNodeCollection {
       })
     }
   }
+
+  on(events, handler) {
+    this.elements.forEach(element => {
+      element.addEventListener(events, handler);
+    })
+  }
+
+  off(events, handler) {
+    this.elements.forEach(element => {
+      element.removeEventListener(events, handler);
+    })
+  }
 }
 
 module.exports = DOMNodeCollection;
