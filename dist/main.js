@@ -25,7 +25,7 @@ eval("class DOMNodeCollection {\n  constructor(array) {\n    this.elements = arr
   \**********************/
 /***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
 
-eval("let DOMNodeCollection = __webpack_require__(/*! ./dom_node_collection */ \"./src/dom_node_collection.js\");\n\nlet $1 = (argument) => {\n  if(argument instanceof HTMLElement) {\n    let element = new DOMNodeCollection([argument]);\n    return element;\n  } else {\n    let nodelist = document.querySelectorAll(argument);\n    let nodeArray = Array.from(nodelist);\n    return new DOMNodeCollection(nodeArray);\n  }\n}\n\nwindow.$1 = $1;\n\n//# sourceURL=webpack:///./src/index.js?");
+eval("let DOMNodeCollection = __webpack_require__(/*! ./dom_node_collection */ \"./src/dom_node_collection.js\");\n\nlet queue = [];\nlet loaded = false;\n\ndocument.addEventListener('DOMContentLoaded', () => {\n  loaded = true;\n  queue.forEach(funct => funct());\n}, false);\n\nlet $1 = (argument) => {\n  switch (typeof argument) {\n    case \"string\":\n      let nodelist = document.querySelectorAll(argument);\n      let nodeArray = Array.from(nodelist);\n      return new DOMNodeCollection(nodeArray);\n    case \"obect\":\n      if (argument instanceof HTMLElement) {\n        return new DOMNodeCollection([argument]);\n      }\n    case \"function\":\n      return handleFunction(argument);\n  }\n}\n\nlet handleFunction = (funct) => {\n  if(loaded == false) {\n    queue.push(funct);\n  } else {\n    funct();\n  }\n}\n\nwindow.$1 = $1;\n\n//# sourceURL=webpack:///./src/index.js?");
 
 /***/ })
 
