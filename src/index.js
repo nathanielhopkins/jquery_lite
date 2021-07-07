@@ -14,10 +14,10 @@ $1 = (argument) => {
       let nodelist = document.querySelectorAll(argument);
       let nodeArray = Array.from(nodelist);
       return new DOMNodeCollection(nodeArray);
-    case "obect":
+    case "object":
       if (argument instanceof HTMLElement) {
         return new DOMNodeCollection([argument]);
-      }
+      };
     case "function":
       return handleFunction(argument);
   }
