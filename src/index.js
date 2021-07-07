@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
   queue.forEach(funct => funct());
 }, false);
 
-let $1 = (argument) => {
+$1 = (argument) => {
   switch (typeof argument) {
     case "string":
       let nodelist = document.querySelectorAll(argument);
@@ -23,6 +23,15 @@ let $1 = (argument) => {
   }
 }
 
+$1.extend = (base, ...addObjects) => {
+  addObjects.forEach(object => {
+    base = Object.assign(base, object)
+  })
+
+  return base;
+}
+
+// helpers
 let handleFunction = (funct) => {
   if(loaded == false) {
     queue.push(funct);
