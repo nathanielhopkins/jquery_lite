@@ -34,10 +34,8 @@ $1.extend = (base, ...addObjects) => {
 $1.ajax = (options) => {
   let defaults = ajaxDefaults();
   options = $1.extend(defaults, options);
+  let params = generateParamsString(options)
   // let data = options[data];
-  let query = '?' + Object.keys(data).map(function (k) {
-    return encodeURIComponent(k) + "=" + encodeURIComponent(data[k]);
-  }).join('&');
 
   return options;
 
