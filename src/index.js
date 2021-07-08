@@ -34,11 +34,25 @@ $1.extend = (base, ...addObjects) => {
 $1.ajax = (options) => {
   let defaults = ajaxDefaults();
   options = $1.extend(defaults, options);
-  let params = generateParamsString(options)
-  // let data = options[data];
+  let params;
+  if(options['data']) {
+    params = generateParamsString(options['data']);
+  }
 
-  return options;
+  console.log(options);
+  
+  let http = new XMLHttpRequest();
+  http.open(options.method, options.url);
 
+  http.onload = function (e) {
+    if(http.status === 200) {
+      options.success(JSON.parse(http.response));
+    } else {
+      options.error(JSON.parse(http.response));
+    }
+  }
+  
+  http.send(params);
 }
 
 // helpers
@@ -52,19 +66,19 @@ let handleFunction = (funct) => {
 
 let ajaxDefaults = () => {
   let defaults = {
-    url: window.location.href,
+    url: '',
     method: 'GET',
-    dataType: 'json',
-    contentType: 'application/x-www-form-urlencoded; charset=UTF-8'
-    // success: ,
-    // error: 
+    contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+    success: () => {},
+    error: () => {},
+    data: {}
   };
 
   return defaults;
 }
 
 let generateParamsString = (data) => {
-  let query = '?' + Object.keys(data).map(function (k) {
+  let query = Object.keys(data).map(function (k) {
     return encodeURIComponent(k) + "=" + encodeURIComponent(data[k]);
   }).join('&');
   return query;
