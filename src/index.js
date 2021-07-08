@@ -28,7 +28,19 @@ $1.extend = (base, ...addObjects) => {
     base = Object.assign(base, object)
   })
 
-  return base;
+  return base;    
+}
+
+$1.ajax = (options) => {
+  let defaults = ajaxDefaults();
+  options = $1.extend(defaults, options);
+  // let data = options[data];
+  // let query = '?' + Object.keys(data).map(function (k) {
+  //   return encodeURIComponent(k) + "=" + encodeURIComponent(data[k]);
+  // }).join('&');
+
+  return options;
+
 }
 
 // helpers
@@ -38,6 +50,19 @@ let handleFunction = (funct) => {
   } else {
     funct();
   }
+}
+
+let ajaxDefaults = () => {
+  let defaults = {
+    url: window.location.href,
+    method: 'GET',
+    dataType: 'json',
+    contentType: 'application/x-www-form-urlencoded; charset=UTF-8'
+    // success: ,
+    // error: 
+  };
+
+  return defaults;
 }
 
 window.$1 = $1;
