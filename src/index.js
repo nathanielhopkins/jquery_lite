@@ -39,8 +39,6 @@ $1.ajax = (options) => {
     params = generateParamsString(options['data']);
   }
 
-  console.log(options);
-  
   let http = new XMLHttpRequest();
   http.open(options.method, options.url);
 
@@ -56,6 +54,7 @@ $1.ajax = (options) => {
 }
 
 // helpers
+
 let handleFunction = (funct) => {
   if(loaded == false) {
     queue.push(funct);
