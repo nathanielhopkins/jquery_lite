@@ -35,9 +35,9 @@ $1.ajax = (options) => {
   let defaults = ajaxDefaults();
   options = $1.extend(defaults, options);
   // let data = options[data];
-  // let query = '?' + Object.keys(data).map(function (k) {
-  //   return encodeURIComponent(k) + "=" + encodeURIComponent(data[k]);
-  // }).join('&');
+  let query = '?' + Object.keys(data).map(function (k) {
+    return encodeURIComponent(k) + "=" + encodeURIComponent(data[k]);
+  }).join('&');
 
   return options;
 
@@ -63,6 +63,13 @@ let ajaxDefaults = () => {
   };
 
   return defaults;
+}
+
+let generateParamsString = (data) => {
+  let query = '?' + Object.keys(data).map(function (k) {
+    return encodeURIComponent(k) + "=" + encodeURIComponent(data[k]);
+  }).join('&');
+  return query;
 }
 
 window.$1 = $1;
